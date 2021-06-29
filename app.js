@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const https = require("https");
@@ -14,7 +15,8 @@ app.get("/", function(req,res)
 app.post("/",function(req,res)
 {
    const city= req.body.CityName
-   const url="https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=44ea80e36447359dc5b417f4dc6b54ea&units=metric";
+   const api_key= process.env.API_KEY;
+   const url="https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+api_key+"";
 https.get(url,function(response)
 {
     console.log(response.statusCode);
